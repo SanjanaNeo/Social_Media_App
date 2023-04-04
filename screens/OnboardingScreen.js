@@ -1,32 +1,87 @@
 import React, { Component } from 'react'
-import { Text, View, Image} from 'react-native'
+import { Text, View, Image,TouchableOpacity,StyleSheet} from 'react-native'
 import Onboarding from 'react-native-onboarding-swiper';
 
-export class OnboardingScreen extends Component {
-  render() {
+const OnboardingScreen=({navigation})=>{
+
+  const Dots=({selected})=>{
+    let backgroundColor;
+    backgroundColor=selected?'rgba(0,0,0,0.8)':'rgba(0,0,0,0.3)'
+    return(
+      <View
+        style={{
+          width:6,
+          height:6,
+          marginHorizontal:3,
+          backgroundColor
+        }}>
+      </View>
+    )
+  }
+
+  const Skip=({...props})=>(
+    <TouchableOpacity style={{marginHorizontal:10}}
+    {...props}
+    >
+      <Text style={{fontSize:16}}>Skip</Text>
+    </TouchableOpacity>
+  )
+
+  const Next=({...props})=>(
+    <TouchableOpacity style={{marginHorizontal:10}}
+    {...props}
+    >
+      <Text style={{fontSize:16}}>Next</Text>
+    </TouchableOpacity>
+  )
+
+  const Done=({...props})=>(
+    <TouchableOpacity style={{marginHorizontal:10}}
+    {...props}
+    >
+      <Text style={{fontSize:16}}>Done</Text>
+    </TouchableOpacity>
+  )
+
     return (
-      <View>
-        <Onboarding
+      <Onboarding
+        SkipButtonComponent={Skip}
+        NextButtonComponent={Next}
+        DoneButtonComponent={Done}
+        DotComponent={Dots}
+        onSkip={()=>navigation.replace("LoginScreen")}
+        onDone={()=>navigation.navigate("LoginScreen")}
   pages={[
     {
-      backgroundColor: '#fff',
+      backgroundColor: '#a6e4d0',
       image: <Image source={require('../assets/onboarding-img1.png')} />,
-      title: 'Onboarding',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: 'Connect to the World',
+      subtitle: 'A New Way To Connect With The World',
     },
     {
-      backgroundColor: '#fff',
+      backgroundColor: '#fdeb93',
       image: <Image source={require('../assets/onboarding-img2.png')} />,
-      title: 'Onboarding',
-      subtitle: 'Done with React Native Onboarding Swiper',
+      title: 'Share Your Favorites',
+      subtitle: 'Share Your Thoughts With Similar Kind of People',
+    },
+    {
+      backgroundColor: '#e9bcbe',
+      image: <Image source={require('../assets/onboarding-img3.png')} />,
+      title: 'Become The Star',
+      subtitle: "Let The Spot Light Capture You",
     },
     
   ]}
 />
-
-      </View>
     )
-  }
+  
 }
 
 export default OnboardingScreen
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center'
+  },
+});
