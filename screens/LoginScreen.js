@@ -1,14 +1,19 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React from 'react'
+import { Text, View, Button,StyleSheet } from 'react-native'
+import AntDesign from '@ant-design/icons'
 
-export class LoginScreen extends Component {
-  render() {
+const LoginScreen=({navigation})=>{
     return (
       <View>
-        <Text>Login screen</Text>
+        <Text>Login Screen</Text>
+        <Button title="Click here"
+        onPress={()=>navigation.navigate('Signup')}  
+        >
+
+        </Button>
       </View>
     )
-  }
+  
 }
 
 export default LoginScreen
